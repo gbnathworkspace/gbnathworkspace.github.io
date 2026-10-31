@@ -4,103 +4,344 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gopinath R — Senior Software Engineer</title>
-<meta name="description" content="Gopinath R, Senior Software Engineer in Chennai building Generative AI systems: RAG, vector search and tool-calling LLM agents.">
+<meta name="description" content="Gopinath R, Senior Software Engineer in Chennai building scalable backend systems and AI applications: RAG, vector search and LLM agents.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root { --bg:#fafafa; --fg:#1a1a1a; --muted:#666; --accent:#2563eb; --card:#fff; --line:#e5e5e5; }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg:#111; --fg:#eee; --muted:#999; --accent:#60a5fa; --card:#1a1a1a; --line:#2a2a2a; }
+  /* Modernist design system (trimmed to what this page uses) */
+  :root {
+    --color-bg: #f3f2f2;
+    --color-text: #201e1d;
+    --color-divider: color-mix(in srgb, #201e1d 40%, transparent);
+    --color-neutral-100: #f8f4f4;
+    --color-accent: oklch(0.38 0.13 264);
+    --color-accent-100: oklch(0.95 0.025 264);
+    --color-accent-600: oklch(0.33 0.12 264);
+    --color-accent-700: oklch(0.36 0.13 264);
+    --color-accent-800: oklch(0.27 0.10 264);
+    --font-heading: "Archivo", system-ui, sans-serif;
+    --font-body: "Archivo", system-ui, sans-serif;
   }
-  * { box-sizing: border-box; }
-  body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.6 system-ui, sans-serif; }
-  main { max-width: 760px; margin: 0 auto; padding: 64px 16px; }
-  h1 { font-size: 2.5rem; margin: 0; }
-  h2 { margin-top: 56px; border-bottom: 1px solid var(--line); padding-bottom: 8px; }
-  h3 { margin: 24px 0 4px; }
-  a { color: var(--accent); }
-  .muted { color: var(--muted); }
-  .links { display:flex; gap:16px; flex-wrap:wrap; }
-  .card { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin-top:16px; }
-  .card h3 { margin-top:0; }
-  .tags { font-size: .85rem; color: var(--muted); }
-  .row { display:flex; justify-content:space-between; flex-wrap:wrap; gap:0 16px; }
-  ul { padding-left: 20px; }
-  dl { display:grid; grid-template-columns: max-content 1fr; gap:6px 16px; }
-  dt { font-weight:600; }
-  dd { margin:0; }
-  @media (max-width: 560px) { dl { grid-template-columns: 1fr; } dd { margin-bottom:8px; } }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); font-size: 15px; line-height: 1.55; }
+  h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); font-weight: 800; line-height: 1.12; letter-spacing: -0.015em; margin: 0 0 8px; }
+  h6 { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; }
+  p { margin: 0 0 12px; }
+  a { color: var(--color-accent-700); text-underline-offset: 3px; }
+  a:hover { color: var(--color-accent); }
+  :focus { outline: none; }
+  :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+  ::selection { background: color-mix(in srgb, var(--color-accent) 30%, transparent); }
+  .text-muted { color: color-mix(in srgb, var(--color-text) 55%, transparent); }
+
+  .btn { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; text-decoration: none; font-family: var(--font-heading); font-weight: 800; font-size: 14px; line-height: 1.2; color: var(--color-text); background: transparent; border: 1px solid transparent; padding: 11px 18px; }
+  .btn-primary { background: var(--color-accent); color: var(--color-bg); }
+  .btn-primary:hover { background: var(--color-accent-600); color: var(--color-bg); }
+  .btn-secondary { border-color: var(--color-divider); }
+  .btn-secondary:hover { background: color-mix(in srgb, var(--color-text) 7%, transparent); color: var(--color-text); }
+  .btn-ghost { color: var(--color-accent); }
+  .btn-ghost:hover { background: color-mix(in srgb, var(--color-accent) 10%, transparent); }
+  .btn-block { width: 100%; margin-top: 8px; }
+  .tag { display: inline-flex; align-items: center; font-size: 11px; letter-spacing: 0.02em; padding: 3px 10px; }
+  .tag-accent { background: var(--color-accent-100); color: var(--color-accent-800); }
+  .table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .table th { text-align: left; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: color-mix(in srgb, var(--color-text) 60%, transparent); padding: 8px; border-bottom: 2px solid var(--color-divider); }
+  .table td { padding: 8px; border-bottom: 1px solid var(--color-divider); }
+  .table tbody tr:hover { background: color-mix(in srgb, var(--color-text) 4%, transparent); }
+
+  /* page */
+  .wrap { max-width: 1180px; margin: 0 auto; padding-left: 32px; padding-right: 32px; }
+  .box { border: 2px solid var(--color-divider); }
+  .label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; font-family: var(--font-heading); font-weight: 600; }
+  .heading { font-family: var(--font-heading); font-weight: 800; }
+  .accent { color: var(--color-accent-700); }
+  .navlink { color: var(--color-text); text-decoration: none; padding: 10px 12px; }
+  .navlink:hover { background: var(--color-neutral-100); color: var(--color-text); }
+  .cells { display: grid; gap: 2px; background: var(--color-divider); border: 2px solid var(--color-divider); }
+  .cells > * { background: var(--color-bg); }
+  .sec { padding: 80px 0 0; scroll-margin-top: 80px; }
+  .sec-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
+  .sec-head h2 { font-size: 36px; letter-spacing: -0.025em; margin: 0; }
+  .sec-head span { font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; font-family: var(--font-heading); font-weight: 600; }
+  .stat { font-family: var(--font-heading); font-weight: 800; font-size: 36px; letter-spacing: -0.03em; margin-top: 4px; }
+  .chip { background: var(--color-bg); padding: 8px 12px; font-family: var(--font-heading); font-weight: 700; font-size: 12px; }
+  .focus-btn { font-family: var(--font-heading); font-weight: 700; font-size: 13px; padding: 10px 14px; border: 2px solid var(--color-divider); cursor: pointer; background: var(--color-bg); color: var(--color-text); }
+  .focus-btn[aria-pressed="true"] { background: var(--color-text); color: var(--color-bg); }
+  .skill-row { display: grid; grid-template-columns: minmax(0,150px) minmax(0,1fr); }
+  .skill-code { background: var(--color-text); color: var(--color-bg); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 8px; }
+  .skill-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 2px; background: var(--color-divider); border-left: 2px solid var(--color-divider); }
+  .skill { background: var(--color-bg); padding: 16px; display: flex; flex-direction: column; gap: 12px; min-height: 100px; }
+  .skill:hover { background: var(--color-neutral-100); }
+  .skill img { width: 32px; height: 32px; object-fit: contain; filter: grayscale(1) contrast(1.1); }
+  .skill span { font-family: var(--font-heading); font-weight: 600; font-size: 13px; overflow-wrap: anywhere; }
+  .card-sm { display: flex; flex-direction: column; }
+  .card-sm > div:first-child { padding: 12px 18px; border-bottom: 2px solid var(--color-divider); display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
+  .card-sm > div:last-child { padding: 18px; display: flex; flex-direction: column; gap: 10px; }
+  .card-sm h4 { font-size: 19px; margin: 0; text-transform: uppercase; }
+  .card-sm p { margin: 0; font-size: 14px; text-wrap: pretty; }
+  .list { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; font-size: 14px; }
+  @media (max-width: 640px) {
+    .wrap { padding-left: 16px; padding-right: 16px; }
+    .skill-row { grid-template-columns: 1fr; }
+    .skill-grid { grid-template-columns: repeat(2,minmax(0,1fr)); border-left: 0; border-top: 2px solid var(--color-divider); }
+  }
 </style>
 </head>
 <body>
-<main>
-  <header>
-    <h1>Gopinath R</h1>
-    <p class="muted">Senior Software Engineer · Chennai, India</p>
-    <p>4+ years building backend systems in C#/.NET and Python, specializing in Generative AI: RAG pipelines, vector search and tool-calling LLM agents.</p>
-    <nav class="links">
-      <a href="https://github.com/gbnathworkspace">GitHub</a>
-      <a href="https://linkedin.com/in/gopinath-ravichandran">LinkedIn</a>
-      <a href="mailto:gopinathr0720@gmail.com">Email</a>
-      <a href="https://mentorman.co.in">MentorMan</a>
+
+<div style="background:var(--color-text);color:var(--color-bg);font-size:12px;letter-spacing:0.06em;text-transform:uppercase;font-family:var(--font-heading);font-weight:600">
+  <div class="wrap" style="padding-top:8px;padding-bottom:8px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+    <span>Chennai, IN — Open to SDE-2 / Senior backend roles</span>
+    <div style="display:flex;gap:20px">
+      <a href="https://www.linkedin.com/in/gopinath-ravichandran" target="_blank" rel="noopener" style="color:var(--color-bg);text-decoration:none">LinkedIn</a>
+      <a href="https://github.com/gbnathworkspace" target="_blank" rel="noopener" style="color:var(--color-bg);text-decoration:none">GitHub</a>
+      <a href="assets/Gopinath_R_Resume.pdf" target="_blank" style="color:var(--color-bg);text-decoration:none">Résumé PDF</a>
+    </div>
+  </div>
+</div>
+
+<header style="position:sticky;top:0;z-index:10;background:var(--color-bg);border-bottom:2px solid var(--color-divider)">
+  <div class="wrap" style="padding-top:14px;padding-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
+    <div style="display:flex;align-items:center;gap:12px">
+      <div class="heading" style="width:40px;height:40px;background:var(--color-accent);color:var(--color-bg);display:flex;align-items:center;justify-content:center;font-size:16px">GR</div>
+      <div>
+        <div class="heading" style="font-size:16px;line-height:1.1;text-transform:uppercase;letter-spacing:0.02em">Gopinath R</div>
+        <div class="text-muted" style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase">Senior Software Engineer</div>
+      </div>
+    </div>
+    <nav style="display:flex;gap:4px;flex-wrap:wrap;font-family:var(--font-heading);font-weight:600;font-size:12px;letter-spacing:0.08em;text-transform:uppercase">
+      <a class="navlink" href="#projects">Projects</a>
+      <a class="navlink" href="#experience">Experience</a>
+      <a class="navlink" href="#skills">Skills</a>
+      <a class="btn btn-primary" href="#contact" style="padding:10px 16px;font-size:12px">Contact</a>
     </nav>
-  </header>
+  </div>
+</header>
 
-  <section>
-    <h2>Projects</h2>
-    <article class="card">
-      <h3>MentorMan — agentic AI tutoring platform</h3>
-      <p class="tags">Python · FastAPI · React · Claude SDK · LangChain · MongoDB Atlas Vector Search · Voyage AI · AWS · Docker</p>
-      <ul>
-        <li><strong>Agentic tool calling:</strong> bounded ReAct-style loop with six tools, round cap, time budget and server-side per-user state so the model can't read another user's data.</li>
-        <li><strong>Layered memory:</strong> profile, skill graph and episodic summaries with token-budgeted context assembly — no re-sending full chat history.</li>
-        <li><strong>RAG:</strong> token-aware chunking, 1024-dim Voyage embeddings and pre-filtered Atlas Vector Search over PDFs and session summaries.</li>
-        <li><strong>Cost control:</strong> Sonnet for reasoning, Haiku for cheap classification, plus in-house tracing of every model round and tool call.</li>
-        <li><strong>Delivery:</strong> 80+ test modules (unit, integration, property-based), LLM eval suites, GitHub Actions CI/CD to AWS EC2.</li>
-      </ul>
-      <a href="https://mentorman.co.in">Live demo</a>
+<main>
+<section style="border-bottom:2px solid var(--color-divider)">
+  <div class="wrap" style="padding-top:64px;padding-bottom:64px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:48px;align-items:center">
+    <div>
+      <div class="accent" style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;font-family:var(--font-heading);font-weight:700;margin-bottom:20px">Senior Software Engineer — SDE-2</div>
+      <h1 style="font-size:clamp(44px,7vw,80px);line-height:0.95;letter-spacing:-0.035em;margin:0 0 24px;text-wrap:balance">Scalable backend systems and AI applications.</h1>
+      <p style="font-size:18px;line-height:1.5;max-width:40ch;margin:0;text-wrap:pretty">4+ years of C#/.NET services in production, now building AI products: RAG pipelines, vector search and LLM agents on AWS.</p>
+    </div>
+
+    <div class="box">
+      <div class="heading" style="background:var(--color-accent);color:var(--color-bg);padding:14px 20px;font-size:14px;letter-spacing:0.1em;text-transform:uppercase">Profile summary</div>
+      <div style="padding:20px;display:flex;flex-direction:column;gap:16px">
+        <div class="cells" style="grid-template-columns:minmax(0,1fr) minmax(0,1fr)">
+          <div style="padding:12px 14px"><div class="label text-muted">Role</div><div class="heading" style="font-size:20px;margin-top:4px">SDE-2</div></div>
+          <div style="padding:12px 14px"><div class="label text-muted">Experience</div><div class="heading" style="font-size:20px;margin-top:4px">4+ years</div></div>
+          <div style="padding:12px 14px"><div class="label text-muted">Primary stack</div><div class="heading" style="font-weight:700;font-size:16px;margin-top:4px">C# / .NET · Python</div></div>
+          <div style="padding:12px 14px"><div class="label text-muted">Location</div><div class="heading" style="font-weight:700;font-size:16px;margin-top:4px">Chennai / Remote</div></div>
+        </div>
+        <div>
+          <div class="label text-muted" style="margin-bottom:8px">Focus area</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button type="button" class="focus-btn" aria-pressed="true" data-note="C#/.NET, REST APIs, PostgreSQL">Backend</button>
+            <button type="button" class="focus-btn" aria-pressed="false" data-note="RAG, vector search, LLM agents">AI platform</button>
+            <button type="button" class="focus-btn" aria-pressed="false" data-note="FastAPI + React, shipped on AWS">Full-stack</button>
+          </div>
+        </div>
+        <div style="border-top:2px solid var(--color-divider);padding-top:14px;display:flex;justify-content:space-between;align-items:baseline;gap:12px">
+          <span id="focus-note" style="font-size:14px">C#/.NET, REST APIs, PostgreSQL</span>
+          <span class="heading accent" style="font-size:13px;letter-spacing:0.08em">OPEN TO ROLES</span>
+        </div>
+        <a class="btn btn-primary btn-block" href="#projects" style="padding:14px 18px;font-size:15px">View projects</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div style="border-bottom:2px solid var(--color-divider)">
+  <div class="wrap" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
+    <div style="padding:24px 20px 24px 0"><div class="label text-muted">Industry since</div><div class="stat">2022</div></div>
+    <div style="padding:24px 20px"><div class="label text-muted">Engagement lift</div><div class="stat" style="color:var(--color-accent)">+25%</div></div>
+    <div style="padding:24px 20px"><div class="label text-muted">Tables under test</div><div class="stat">15+</div></div>
+    <div style="padding:24px 0 24px 20px"><div class="label text-muted">Data loss in migration</div><div class="stat">0</div></div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section id="projects" class="sec">
+    <div class="sec-head"><h2>Projects</h2><span class="text-muted">Personal + professional</span></div>
+
+    <article class="box" style="margin-bottom:24px">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:14px 20px;border-bottom:2px solid var(--color-divider)">
+        <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap">
+          <span class="heading accent" style="font-size:14px">01</span>
+          <h3 style="font-size:22px;letter-spacing:-0.01em;margin:0;text-transform:uppercase">AI Mentor</h3>
+        </div>
+        <span class="tag tag-accent">Live · Personal project</span>
+      </div>
+      <!-- ponytail: screenshot slot from the design dropped (it was empty); add an <img> column here when there's a real screenshot -->
+      <div style="padding:24px 20px;display:flex;flex-direction:column;gap:20px">
+        <div style="display:grid;grid-template-columns:auto minmax(40px,1fr) auto;gap:16px;align-items:center;max-width:720px">
+          <div><div class="heading" style="font-size:24px">CLIENT</div><div class="text-muted" style="font-size:12px">React SPA</div></div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <div style="flex:1;height:2px;background:var(--color-divider)"></div>
+            <span class="label" style="letter-spacing:0.08em;white-space:nowrap">FastAPI · RAG · LLM</span>
+            <div style="flex:1;height:2px;background:var(--color-divider)"></div>
+          </div>
+          <div style="text-align:right"><div class="heading" style="font-size:24px">AWS</div><div class="text-muted" style="font-size:12px">Docker · production</div></div>
+        </div>
+        <p style="margin:0;max-width:72ch;text-wrap:pretty">An AI mentoring assistant that remembers you. Three memory layers (profile, skill graph, episodic summaries) keep your goals and skill level across sessions, so the full chat history isn't resent every turn.</p>
+        <ul class="list">
+          <li>RAG on Voyage-3 embeddings + MongoDB Atlas Vector Search, filtered by user, source and topic.</li>
+          <li>Claude tool calling via LangChain, with a cap on rounds to bound latency and API cost.</li>
+          <li>FastAPI backend in Docker, deployed on AWS.</li>
+        </ul>
+        <div class="cells" style="display:flex;flex-wrap:wrap;align-self:flex-start">
+          <span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">Claude SDK</span><span class="chip">LangChain</span><span class="chip">MongoDB</span><span class="chip">React</span><span class="chip">AWS</span>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a class="btn btn-primary" href="https://mentorman.co.in" target="_blank" rel="noopener">Live demo — mentorman.co.in</a>
+          <a class="btn btn-secondary" href="https://github.com/gbnathworkspace/aimentor" target="_blank" rel="noopener">View source</a>
+        </div>
+      </div>
     </article>
-    <article class="card">
-      <h3>AI content-recommendation service</h3>
-      <p class="tags">Python · Hugging Face embeddings · Vector search</p>
-      <p>Production recommendation engine at Triad Software that raised user engagement by 25%.</p>
-    </article>
-    <article class="card">
-      <h3>Dependency-analysis tool</h3>
-      <p class="tags">C# · .NET</p>
-      <p>Internal tool that maps method-call hierarchies automatically, cutting regression impact analysis from hours to seconds.</p>
-    </article>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px">
+      <article class="box card-sm">
+        <div><span class="heading accent" style="font-size:13px">02</span><span class="label text-muted" style="letter-spacing:0.08em">Triad Software</span></div>
+        <div><h4>Content recommendation engine</h4><p>Hugging Face embeddings + vector search over the content library to show users what to read next. In production; engagement up 25%.</p></div>
+      </article>
+      <article class="box card-sm">
+        <div><span class="heading accent" style="font-size:13px">03</span><span class="label text-muted" style="letter-spacing:0.08em">Triad Software</span></div>
+        <div><h4>Cassandra → PostgreSQL migration</h4><p>Redesigned the data access layer and WCF services for a relational model, then migrated a legacy module with zero data loss.</p></div>
+      </article>
+      <article class="box card-sm">
+        <div><span class="heading accent" style="font-size:13px">04</span><span class="label text-muted" style="letter-spacing:0.08em">Internal tooling</span></div>
+        <div><h4>Dependency analysis tool</h4><p>Maps method-call hierarchies across the codebase automatically, so regression impact analysis takes seconds, not an afternoon.</p></div>
+      </article>
+    </div>
   </section>
 
-  <section>
-    <h2>Experience</h2>
-    <div class="row"><h3>Senior Software Engineer, Triad Software</h3><span class="muted">Aug 2022 – Present</span></div>
-    <ul>
-      <li>Shipped a Python AI recommendation service using embeddings and vector search (+25% engagement).</li>
-      <li>Built enterprise REST APIs in C#/.NET for licensing, user lifecycle and file management.</li>
-      <li>Migrated a legacy module from Cassandra to PostgreSQL, redesigning the data access layer and WCF services.</li>
-      <li>Wrote unit tests for 15+ critical database tables and worked on performance optimization.</li>
-    </ul>
-    <div class="row"><h3>Project Intern, Wipro Technologies</h3><span class="muted">Mar 2022 – May 2022</span></div>
-    <ul><li>Built a Java/J2EE food-ordering web app (JSP, Servlets, Oracle, MVC).</li></ul>
+  <section id="experience" class="sec">
+    <div class="sec-head"><h2>Experience</h2><span class="text-muted">2018 — present</span></div>
+    <div class="box" style="overflow-x:auto">
+      <table class="table" style="min-width:640px">
+        <thead><tr><th>Type</th><th>Organisation</th><th>Role</th><th>Start</th><th>End</th></tr></thead>
+        <tbody>
+          <tr><td class="heading">EDU</td><td>Vellalar College of Engg. &amp; Tech.</td><td>B.Tech, Information Technology</td><td>2018</td><td>2022</td></tr>
+          <tr><td class="heading">INTERN</td><td>Wipro Technologies, Bangalore</td><td>Project Intern</td><td>Mar 2022</td><td>May 2022</td></tr>
+          <tr><td class="heading accent">FULL-TIME</td><td style="font-weight:700">Triad Software Pvt. Ltd., Chennai</td><td style="font-weight:700">Senior Software Engineer</td><td>Aug 2022</td><td class="heading accent">Present</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:24px;margin-top:24px">
+      <div class="box" style="padding:22px">
+        <h6 style="margin:0 0 12px">Triad Software — Senior Software Engineer</h6>
+        <ul class="list">
+          <li>Enterprise REST APIs in C#/.NET for licensing, user lifecycle and file management.</li>
+          <li>AI recommendation engine on embeddings + vector search: engagement up 25%.</li>
+          <li>Led the Cassandra→PostgreSQL migration with zero data loss.</li>
+          <li>Unit tests across 15+ critical tables; performance work that cut production incidents.</li>
+        </ul>
+      </div>
+      <div class="box" style="padding:22px">
+        <h6 style="margin:0 0 12px">Wipro Technologies — Project Intern</h6>
+        <ul class="list">
+          <li>Built a Java/J2EE food-ordering app with end-to-end order management and secure payments.</li>
+          <li>Backend modules in Java, JSP and Servlets on Oracle DB, MVC architecture.</li>
+        </ul>
+      </div>
+    </div>
   </section>
 
-  <section>
-    <h2>Skills</h2>
-    <dl>
-      <dt>Generative AI</dt><dd>LLMs, RAG, embeddings, vector search, agentic AI, tool calling, guardrails, evals &amp; tracing</dd>
-      <dt>LLM tooling</dt><dd>Claude (Anthropic SDK), LangChain, Hugging Face, Voyage AI</dd>
-      <dt>Languages</dt><dd>Python, C#, SQL, TypeScript, Java</dd>
-      <dt>Backend</dt><dd>FastAPI, ASP.NET Core, .NET Framework, REST, WCF</dd>
-      <dt>Databases</dt><dd>MongoDB Atlas, PostgreSQL, Cassandra</dd>
-      <dt>Cloud &amp; DevOps</dt><dd>AWS (EC2, SSM), Docker, GitHub Actions</dd>
-      <dt>Testing</dt><dd>pytest, Hypothesis, unit &amp; integration testing</dd>
-    </dl>
+  <section id="skills" class="sec">
+    <div class="sec-head"><h2>Skills</h2><span class="text-muted">Tech stack</span></div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div class="box skill-row">
+        <div class="skill-code"><span class="heading" style="font-size:22px">LANG</span><span class="label" style="letter-spacing:0.08em">Languages</span></div>
+        <div class="skill-grid">
+          <div class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="" loading="lazy"><span>C#</span></div>
+          <div class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="" loading="lazy"><span>Python</span></div>
+          <div class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="" loading="lazy"><span>TypeScript</span></div>
+          <div class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="" loading="lazy"><span>Java</span></div>
+        </div>
+      </div>
+      <div class="box skill-row">
+        <div class="skill-code"><span class="heading" style="font-size:22px">FW</span><span class="label" style="letter-spacing:0.08em">Frameworks</span></div>
+        <div class="skill-grid">
+          <div class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg" alt="" loading="lazy"><span>ASP.NET Core</span></div>
+          <div class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg" alt="" loading="lazy"><span>.NET Framework</span></div>
+          <div class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="" loading="lazy"><span>FastAPI</span></div>
+          <div class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="" loading="lazy"><span>React</span></div>
+        </div>
+      </div>
+      <div class="box skill-row">
+        <div class="skill-code"><span class="heading" style="font-size:22px">AI/ML</span><span class="label" style="letter-spacing:0.08em">AI</span></div>
+        <div class="skill-grid">
+          <div class="skill"><img src="https://cdn.simpleicons.org/anthropic" alt="" loading="lazy"><span>Claude SDK</span></div>
+          <div class="skill"><img src="https://cdn.simpleicons.org/langchain" alt="" loading="lazy"><span>LangChain</span></div>
+          <div class="skill"><img src="https://cdn.simpleicons.org/huggingface" alt="" loading="lazy"><span>Hugging Face</span></div>
+          <div class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="" loading="lazy"><span>Vector Search</span></div>
+        </div>
+      </div>
+      <div class="box skill-row">
+        <div class="skill-code"><span class="heading" style="font-size:22px">DB</span><span class="label" style="letter-spacing:0.08em">Databases</span></div>
+        <div class="skill-grid">
+          <div class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="" loading="lazy"><span>PostgreSQL</span></div>
+          <div class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="" loading="lazy"><span>MongoDB</span></div>
+          <div class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cassandra/cassandra-original.svg" alt="" loading="lazy"><span>Cassandra</span></div>
+          <div class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" alt="" loading="lazy"><span>Oracle</span></div>
+        </div>
+      </div>
+      <div class="box skill-row">
+        <div class="skill-code"><span class="heading" style="font-size:22px">DEVOPS</span><span class="label" style="letter-spacing:0.08em">Cloud &amp; delivery</span></div>
+        <div class="skill-grid">
+          <div class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain.svg" alt="" loading="lazy"><span>AWS</span></div>
+          <div class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="" loading="lazy"><span>Docker</span></div>
+          <div class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="" loading="lazy"><span>Git</span></div>
+          <div class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg" alt="" loading="lazy"><span>GitHub Actions</span></div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section>
-    <h2>Education &amp; Certifications</h2>
-    <p><strong>B.Tech, Information Technology</strong> — Vellalar College of Engineering &amp; Technology, Erode <span class="muted">(2018 – 2022)</span></p>
-    <p><strong>Future AWS Agent Engineer Nanodegree</strong> — Udacity <span class="muted">(Sep 2026)</span></p>
+  <section id="contact" class="sec" style="padding-bottom:80px">
+    <div class="box">
+      <div style="background:var(--color-accent);color:var(--color-bg);padding:40px 28px">
+        <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;font-family:var(--font-heading);font-weight:700;margin-bottom:12px">Contact</div>
+        <h2 style="font-size:clamp(36px,5.5vw,60px);line-height:0.98;letter-spacing:-0.03em;margin:0;max-width:20ch">Hiring for backend or AI roles? Let’s talk.</h2>
+      </div>
+      <div class="cells" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr));border-width:2px 0 0">
+        <div style="padding:18px 20px"><div class="label text-muted">Phone</div><div class="heading" style="font-size:22px;margin-top:4px">+91 82486-60104</div></div>
+        <div style="padding:18px 20px"><div class="label text-muted">Name</div><div class="heading" style="font-size:22px;margin-top:4px">Gopinath R</div></div>
+        <div style="padding:18px 20px"><div class="label text-muted">Preferred focus</div><div class="heading" id="focus-label" style="font-size:22px;margin-top:4px">Backend</div></div>
+        <div style="padding:18px 20px"><div class="label text-muted">Status</div><div class="heading accent" style="font-size:22px;margin-top:4px">Open to roles</div></div>
+      </div>
+      <div style="padding:22px 20px;border-top:2px solid var(--color-divider);display:flex;gap:12px;flex-wrap:wrap">
+        <a class="btn btn-primary" href="mailto:gopinathr0720@gmail.com">gopinathr0720@gmail.com</a>
+        <a class="btn btn-secondary" href="tel:+918248660104">+91 82486-60104</a>
+        <a class="btn btn-secondary" href="https://www.linkedin.com/in/gopinath-ravichandran" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn btn-secondary" href="https://github.com/gbnathworkspace" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn btn-ghost" href="assets/Gopinath_R_Resume.pdf" target="_blank">Download résumé</a>
+      </div>
+    </div>
   </section>
+</div>
 </main>
+
+<footer style="border-top:2px solid var(--color-divider)">
+  <div class="wrap text-muted" style="padding-top:20px;padding-bottom:32px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12px;letter-spacing:0.08em;text-transform:uppercase">
+    <span>Gopinath R — Chennai, India</span>
+    <span>2026</span>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.focus-btn').forEach(function (b, _, all) {
+    b.addEventListener('click', function () {
+      all.forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
+      document.getElementById('focus-note').textContent = b.dataset.note;
+      document.getElementById('focus-label').textContent = b.textContent;
+    });
+  });
+</script>
 </body>
 </html>
