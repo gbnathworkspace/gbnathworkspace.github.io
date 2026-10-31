@@ -75,11 +75,19 @@
   .skill:hover { background: var(--color-neutral-100); }
   .skill img { width: 32px; height: 32px; object-fit: contain; filter: grayscale(1) contrast(1.1); }
   .skill span { font-family: var(--font-heading); font-weight: 600; font-size: 13px; overflow-wrap: anywhere; }
-  .card-sm { display: flex; flex-direction: column; }
-  .card-sm > div:first-child { padding: 12px 18px; border-bottom: 2px solid var(--color-divider); display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
-  .card-sm > div:last-child { padding: 18px; display: flex; flex-direction: column; gap: 10px; }
-  .card-sm h4 { font-size: 19px; margin: 0; text-transform: uppercase; }
-  .card-sm p { margin: 0; font-size: 14px; text-wrap: pretty; }
+  .proj summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: auto minmax(0,1fr) auto; gap: 16px; align-items: center; padding: 18px 20px; }
+  .proj summary::-webkit-details-marker { display: none; }
+  .proj summary:hover { background: var(--color-neutral-100); }
+  .proj-num { font-size: 14px; }
+  .proj-peek { display: flex; flex-direction: column; gap: 6px; }
+  .proj-title { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .proj-title h3 { font-size: 22px; letter-spacing: -0.01em; margin: 0; text-transform: uppercase; }
+  .proj-line { font-size: 14px; text-wrap: pretty; }
+  .proj-toggle::after { content: "+"; font-family: var(--font-heading); font-weight: 800; font-size: 28px; line-height: 1; color: var(--color-accent-700); }
+  .proj[open] .proj-toggle::after { content: "\2212"; }
+  .proj[open] summary { border-bottom: 2px solid var(--color-divider); }
+  .proj-body { padding: 24px 20px; display: flex; flex-direction: column; gap: 20px; }
+  .proj-body p { margin: 0; max-width: 72ch; text-wrap: pretty; }
   .list { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; font-size: 14px; }
   @media (max-width: 640px) {
     .wrap { padding-left: 16px; padding-right: 16px; }
@@ -169,54 +177,109 @@
   <section id="projects" class="sec">
     <div class="sec-head"><h2>Projects</h2><span class="text-muted">Personal + professional</span></div>
 
-    <article class="box" style="margin-bottom:24px">
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:14px 20px;border-bottom:2px solid var(--color-divider)">
-        <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap">
-          <span class="heading accent" style="font-size:14px">01</span>
-          <h3 style="font-size:22px;letter-spacing:-0.01em;margin:0;text-transform:uppercase">AI Mentor</h3>
-        </div>
-        <span class="tag tag-accent">Live · Personal project</span>
-      </div>
-      <!-- ponytail: screenshot slot from the design dropped (it was empty); add an <img> column here when there's a real screenshot -->
-      <div style="padding:24px 20px;display:flex;flex-direction:column;gap:20px">
-        <div style="display:grid;grid-template-columns:auto minmax(40px,1fr) auto;gap:16px;align-items:center;max-width:720px">
-          <div><div class="heading" style="font-size:24px">CLIENT</div><div class="text-muted" style="font-size:12px">React SPA</div></div>
-          <div style="display:flex;align-items:center;gap:8px">
-            <div style="flex:1;height:2px;background:var(--color-divider)"></div>
-            <span class="label" style="letter-spacing:0.08em;white-space:nowrap">FastAPI · RAG · LLM</span>
-            <div style="flex:1;height:2px;background:var(--color-divider)"></div>
+    <!-- ponytail: native <details> accordion, no JS -->
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <details class="box proj">
+        <summary>
+          <span class="heading accent proj-num">01</span>
+          <span class="proj-peek">
+            <span class="proj-title"><h3>AI Mentor</h3><span class="tag tag-accent">Live · Personal project</span></span>
+            <span class="proj-line">AI mentoring assistant that remembers you, built on RAG, vector search and Claude tool calling.</span>
+          </span>
+          <span class="proj-toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="proj-body">
+          <div style="display:grid;grid-template-columns:auto minmax(40px,1fr) auto;gap:16px;align-items:center;max-width:720px">
+            <div><div class="heading" style="font-size:24px">CLIENT</div><div class="text-muted" style="font-size:12px">React SPA</div></div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <div style="flex:1;height:2px;background:var(--color-divider)"></div>
+              <span class="label" style="letter-spacing:0.08em;white-space:nowrap">FastAPI · RAG · LLM</span>
+              <div style="flex:1;height:2px;background:var(--color-divider)"></div>
+            </div>
+            <div style="text-align:right"><div class="heading" style="font-size:24px">AWS</div><div class="text-muted" style="font-size:12px">Docker · production</div></div>
           </div>
-          <div style="text-align:right"><div class="heading" style="font-size:24px">AWS</div><div class="text-muted" style="font-size:12px">Docker · production</div></div>
+          <p>Three memory layers (profile, skill graph, episodic summaries) keep your goals and skill level across sessions, so the full chat history isn't resent every turn.</p>
+          <ul class="list">
+            <li><strong>Agentic tool calling:</strong> bounded ReAct-style loop with six tools, a round cap and time budget, and server-side per-user state so the model can't read another user's data.</li>
+            <li><strong>Layered memory:</strong> profile, skill graph and episodic summaries with token-budgeted context assembly.</li>
+            <li><strong>RAG:</strong> token-aware chunking, Voyage-3 embeddings and pre-filtered MongoDB Atlas Vector Search by user, source and topic.</li>
+            <li><strong>Cost control:</strong> Sonnet for reasoning, Haiku for cheap classification, plus tracing of every model round and tool call.</li>
+            <li><strong>Delivery:</strong> 80+ test modules (unit, integration, property-based), LLM eval suites, GitHub Actions CI/CD to AWS EC2 in Docker.</li>
+          </ul>
+          <div class="cells" style="display:flex;flex-wrap:wrap;align-self:flex-start">
+            <span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">Claude SDK</span><span class="chip">LangChain</span><span class="chip">MongoDB</span><span class="chip">React</span><span class="chip">AWS</span>
+          </div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <a class="btn btn-primary" href="https://mentorman.co.in" target="_blank" rel="noopener">Live demo — mentorman.co.in</a>
+            <a class="btn btn-secondary" href="https://github.com/gbnathworkspace/aimentor" target="_blank" rel="noopener">View source</a>
+          </div>
         </div>
-        <p style="margin:0;max-width:72ch;text-wrap:pretty">An AI mentoring assistant that remembers you. Three memory layers (profile, skill graph, episodic summaries) keep your goals and skill level across sessions, so the full chat history isn't resent every turn.</p>
-        <ul class="list">
-          <li>RAG on Voyage-3 embeddings + MongoDB Atlas Vector Search, filtered by user, source and topic.</li>
-          <li>Claude tool calling via LangChain, with a cap on rounds to bound latency and API cost.</li>
-          <li>FastAPI backend in Docker, deployed on AWS.</li>
-        </ul>
-        <div class="cells" style="display:flex;flex-wrap:wrap;align-self:flex-start">
-          <span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">Claude SDK</span><span class="chip">LangChain</span><span class="chip">MongoDB</span><span class="chip">React</span><span class="chip">AWS</span>
-        </div>
-        <div style="display:flex;gap:12px;flex-wrap:wrap">
-          <a class="btn btn-primary" href="https://mentorman.co.in" target="_blank" rel="noopener">Live demo — mentorman.co.in</a>
-          <a class="btn btn-secondary" href="https://github.com/gbnathworkspace/aimentor" target="_blank" rel="noopener">View source</a>
-        </div>
-      </div>
-    </article>
+      </details>
 
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px">
-      <article class="box card-sm">
-        <div><span class="heading accent" style="font-size:13px">02</span><span class="label text-muted" style="letter-spacing:0.08em">Triad Software</span></div>
-        <div><h4>Content recommendation engine</h4><p>Hugging Face embeddings + vector search over the content library to show users what to read next. In production; engagement up 25%.</p></div>
-      </article>
-      <article class="box card-sm">
-        <div><span class="heading accent" style="font-size:13px">03</span><span class="label text-muted" style="letter-spacing:0.08em">Triad Software</span></div>
-        <div><h4>Cassandra → PostgreSQL migration</h4><p>Redesigned the data access layer and WCF services for a relational model, then migrated a legacy module with zero data loss.</p></div>
-      </article>
-      <article class="box card-sm">
-        <div><span class="heading accent" style="font-size:13px">04</span><span class="label text-muted" style="letter-spacing:0.08em">Internal tooling</span></div>
-        <div><h4>Dependency analysis tool</h4><p>Maps method-call hierarchies across the codebase automatically, so regression impact analysis takes seconds, not an afternoon.</p></div>
-      </article>
+      <details class="box proj">
+        <summary>
+          <span class="heading accent proj-num">02</span>
+          <span class="proj-peek">
+            <span class="proj-title"><h3>Content recommendation engine</h3><span class="tag tag-accent">Triad Software</span></span>
+            <span class="proj-line">Embeddings + vector search that tell users what to read next. Engagement up 25%.</span>
+          </span>
+          <span class="proj-toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="proj-body">
+          <p>Production recommendation service in Python. Content is embedded with Hugging Face models and matched by vector similarity, so users see related material instead of a static list.</p>
+          <ul class="list">
+            <li>Hugging Face embeddings over the content library.</li>
+            <li>Vector search to rank what each user should read next.</li>
+            <li>Shipped to production; user engagement up 25%.</li>
+          </ul>
+          <div class="cells" style="display:flex;flex-wrap:wrap;align-self:flex-start">
+            <span class="chip">Python</span><span class="chip">Hugging Face</span><span class="chip">Vector search</span>
+          </div>
+        </div>
+      </details>
+
+      <details class="box proj">
+        <summary>
+          <span class="heading accent proj-num">03</span>
+          <span class="proj-peek">
+            <span class="proj-title"><h3>Cassandra → PostgreSQL migration</h3><span class="tag tag-accent">Triad Software</span></span>
+            <span class="proj-line">Moved a legacy module to a relational model with zero data loss.</span>
+          </span>
+          <span class="proj-toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="proj-body">
+          <p>Led the migration of a legacy module from Cassandra to PostgreSQL.</p>
+          <ul class="list">
+            <li>Redesigned the data access layer for a relational schema.</li>
+            <li>Reworked the WCF services that sat on top of it.</li>
+            <li>Unit tests across 15+ critical tables to verify the move; zero data loss.</li>
+          </ul>
+          <div class="cells" style="display:flex;flex-wrap:wrap;align-self:flex-start">
+            <span class="chip">C#</span><span class="chip">.NET</span><span class="chip">WCF</span><span class="chip">PostgreSQL</span><span class="chip">Cassandra</span>
+          </div>
+        </div>
+      </details>
+
+      <details class="box proj">
+        <summary>
+          <span class="heading accent proj-num">04</span>
+          <span class="proj-peek">
+            <span class="proj-title"><h3>Dependency analysis tool</h3><span class="tag tag-accent">Internal tooling</span></span>
+            <span class="proj-line">Regression impact analysis in seconds, not an afternoon.</span>
+          </span>
+          <span class="proj-toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="proj-body">
+          <p>Internal C#/.NET tool that maps method-call hierarchies across the codebase automatically.</p>
+          <ul class="list">
+            <li>Shows which callers a change touches before it ships.</li>
+            <li>Cut regression impact analysis from hours to seconds.</li>
+          </ul>
+          <div class="cells" style="display:flex;flex-wrap:wrap;align-self:flex-start">
+            <span class="chip">C#</span><span class="chip">.NET</span>
+          </div>
+        </div>
+      </details>
     </div>
   </section>
 
