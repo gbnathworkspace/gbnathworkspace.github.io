@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Gopinath R — Senior Software Engineer</title>
-<meta name="description" content="Gopinath R, Senior Software Engineer in Chennai building scalable backend systems and AI applications: RAG, vector search and LLM agents.">
+<title>Gopinath R — AI Engineer</title>
+<meta name="description" content="Gopinath R, AI engineer in Chennai building LLM products end to end: agents with tool calling, RAG over vector search, and the backend behind them.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -126,7 +126,7 @@
       <div class="heading" style="width:40px;height:40px;background:var(--color-accent);color:var(--color-bg);display:flex;align-items:center;justify-content:center;font-size:16px">GR</div>
       <div>
         <div class="heading" style="font-size:16px;line-height:1.1;text-transform:uppercase;letter-spacing:0.02em">Gopinath R</div>
-        <div class="text-muted" style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase">Senior Software Engineer</div>
+        <div class="text-muted" style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase">AI Engineer</div>
       </div>
     </div>
     <nav style="display:flex;gap:4px;flex-wrap:wrap;font-family:var(--font-heading);font-weight:600;font-size:12px;letter-spacing:0.08em;text-transform:uppercase">
@@ -142,9 +142,9 @@
 <section class="hero">
   <div class="wrap hero-grid">
     <div class="hero-text">
-      <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;font-family:var(--font-heading);font-weight:700;margin-bottom:20px;color:oklch(0.78 0.08 264)">Hi, I'm Gopinath R — Senior Software Engineer</div>
-      <h1 style="font-size:clamp(44px,7vw,80px);line-height:0.95;letter-spacing:-0.035em;margin:0 0 24px;text-wrap:balance">Scalable backend systems and AI applications.</h1>
-      <p style="font-size:18px;line-height:1.5;max-width:40ch;margin:0 0 32px;text-wrap:pretty;opacity:0.85">4+ years of C#/.NET services in production, now building AI products: RAG pipelines, vector search and LLM agents on AWS.</p>
+      <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;font-family:var(--font-heading);font-weight:700;margin-bottom:20px;color:oklch(0.78 0.08 264)">Hi, I'm Gopinath R — AI Engineer</div>
+      <h1 style="font-size:clamp(44px,7vw,80px);line-height:0.95;letter-spacing:-0.035em;margin:0 0 24px;text-wrap:balance">AI applications, built on solid backend engineering.</h1>
+      <p style="font-size:18px;line-height:1.5;max-width:40ch;margin:0 0 32px;text-wrap:pretty;opacity:0.85">I build LLM products end to end: agents with tool calling, RAG over vector search, and the backend that keeps them fast, safe and cheap. 4+ years shipping C#/.NET and Python in production.</p>
       <div style="display:flex;gap:12px;flex-wrap:wrap">
         <a class="btn btn-primary" href="#projects" style="padding:14px 20px;font-size:15px">View projects</a>
         <a class="btn hero-ghost" href="#contact" style="padding:14px 20px;font-size:15px">Contact me</a>
@@ -158,7 +158,7 @@
   <div class="wrap" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
     <div style="padding:24px 20px 24px 0"><div class="label text-muted">Industry since</div><div class="stat">2022</div></div>
     <div style="padding:24px 20px"><div class="label text-muted">Engagement lift</div><div class="stat" style="color:var(--color-accent)">+25%</div></div>
-    <div style="padding:24px 20px"><div class="label text-muted">Tables under test</div><div class="stat">15+</div></div>
+    <div style="padding:24px 20px"><div class="label text-muted">Test modules in MentorMan</div><div class="stat">80+</div></div>
     <div style="padding:24px 0 24px 20px"><div class="label text-muted">Data loss in migration</div><div class="stat">0</div></div>
   </div>
 </div>
@@ -174,8 +174,8 @@
         <summary>
           <span class="heading accent proj-num">01</span>
           <span class="proj-peek">
-            <span class="proj-title"><h3>AI Mentor</h3><span class="tag tag-accent">Live · Personal project</span></span>
-            <span class="proj-line">AI mentoring assistant that remembers you, built on RAG, vector search and Claude tool calling.</span>
+            <span class="proj-title"><h3>MentorMan</h3><span class="tag tag-accent">Live · Personal project</span></span>
+            <span class="proj-line">AI mentor for students and young professionals that remembers you, built on Claude agents, RAG and layered memory.</span>
           </span>
           <span class="proj-toggle" aria-hidden="true"></span>
         </summary>
@@ -189,7 +189,7 @@
             </div>
             <div style="text-align:right"><div class="heading" style="font-size:24px">AWS</div><div class="text-muted" style="font-size:12px">Docker · production</div></div>
           </div>
-          <p>Three memory layers (profile, skill graph, episodic summaries) keep your goals and skill level across sessions, so the full chat history isn't resent every turn.</p>
+          <p><strong>Hardest problem:</strong> a mentor is only useful if it remembers you across weeks, but resending the whole chat history every turn is slow, expensive and eventually overflows the context window. I split memory into three layers (a user profile, a skill graph and episodic session summaries) and assemble only what each turn needs under a fixed token budget, so the model keeps your goals and level without carrying the full transcript.</p>
           <ul class="list">
             <li><strong>Agentic tool calling:</strong> bounded ReAct-style loop with six tools, a round cap and time budget, and server-side per-user state so the model can't read another user's data.</li>
             <li><strong>Layered memory:</strong> profile, skill graph and episodic summaries with token-budgeted context assembly.</li>
@@ -201,7 +201,8 @@
             <span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">Claude SDK</span><span class="chip">LangChain</span><span class="chip">MongoDB</span><span class="chip">React</span><span class="chip">AWS</span>
           </div>
           <div style="display:flex;gap:12px;flex-wrap:wrap">
-            <a class="btn btn-primary" href="https://mentorman.co.in" target="_blank" rel="noopener">Live demo — mentorman.co.in</a>
+            <a class="btn btn-primary" href="https://mentorman.in" target="_blank" rel="noopener">Visit mentorman.in</a>
+            <a class="btn btn-secondary" href="https://mentorman.co.in" target="_blank" rel="noopener">Open the app</a>
             <a class="btn btn-secondary" href="https://github.com/gbnathworkspace/aimentor" target="_blank" rel="noopener">View source</a>
           </div>
         </div>
@@ -290,10 +291,10 @@
       <div class="box" style="padding:22px">
         <h6 style="margin:0 0 12px">Triad Software — Senior Software Engineer</h6>
         <ul class="list">
-          <li>Enterprise REST APIs in C#/.NET for licensing, user lifecycle and file management.</li>
+          <li>Backend for a team collaboration app used by enterprise clients and general users: C#/.NET REST APIs for licensing, user lifecycle and file management.</li>
           <li>AI recommendation engine on embeddings + vector search: engagement up 25%.</li>
           <li>Led the Cassandra→PostgreSQL migration with zero data loss.</li>
-          <li>Unit tests across 15+ critical tables; performance work that cut production incidents.</li>
+          <li>Unit tests across 15+ critical database tables.</li>
         </ul>
       </div>
       <div class="box" style="padding:22px">
@@ -310,6 +311,15 @@
     <div class="sec-head"><h2>Skills</h2><span class="text-muted">Tech stack</span></div>
     <div style="display:flex;flex-direction:column;gap:16px">
       <div class="box skill-row">
+        <div class="skill-code"><span class="heading" style="font-size:22px">AI/ML</span><span class="label" style="letter-spacing:0.08em">AI engineering</span></div>
+        <div class="skill-grid">
+          <div class="skill"><img src="https://cdn.simpleicons.org/anthropic" alt="" loading="lazy"><span>Claude SDK</span></div>
+          <div class="skill"><img src="https://cdn.simpleicons.org/langchain" alt="" loading="lazy"><span>LangChain</span></div>
+          <div class="skill"><img src="https://cdn.simpleicons.org/huggingface" alt="" loading="lazy"><span>Hugging Face</span></div>
+          <div class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="" loading="lazy"><span>Vector Search</span></div>
+        </div>
+      </div>
+      <div class="box skill-row">
         <div class="skill-code"><span class="heading" style="font-size:22px">LANG</span><span class="label" style="letter-spacing:0.08em">Languages</span></div>
         <div class="skill-grid">
           <div class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="" loading="lazy"><span>C#</span></div>
@@ -325,15 +335,6 @@
           <div class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg" alt="" loading="lazy"><span>.NET Framework</span></div>
           <div class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="" loading="lazy"><span>FastAPI</span></div>
           <div class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="" loading="lazy"><span>React</span></div>
-        </div>
-      </div>
-      <div class="box skill-row">
-        <div class="skill-code"><span class="heading" style="font-size:22px">AI/ML</span><span class="label" style="letter-spacing:0.08em">AI</span></div>
-        <div class="skill-grid">
-          <div class="skill"><img src="https://cdn.simpleicons.org/anthropic" alt="" loading="lazy"><span>Claude SDK</span></div>
-          <div class="skill"><img src="https://cdn.simpleicons.org/langchain" alt="" loading="lazy"><span>LangChain</span></div>
-          <div class="skill"><img src="https://cdn.simpleicons.org/huggingface" alt="" loading="lazy"><span>Hugging Face</span></div>
-          <div class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="" loading="lazy"><span>Vector Search</span></div>
         </div>
       </div>
       <div class="box skill-row">
@@ -361,16 +362,14 @@
     <div class="box">
       <div style="background:var(--color-accent);color:var(--color-bg);padding:40px 28px">
         <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;font-family:var(--font-heading);font-weight:700;margin-bottom:12px">Contact</div>
-        <h2 style="font-size:clamp(36px,5.5vw,60px);line-height:0.98;letter-spacing:-0.03em;margin:0;max-width:20ch">Let’s talk backend systems and AI.</h2>
+        <h2 style="font-size:clamp(36px,5.5vw,60px);line-height:0.98;letter-spacing:-0.03em;margin:0;max-width:20ch">Let’s talk AI engineering.</h2>
       </div>
       <div class="cells" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr));border-width:2px 0 0">
-        <div style="padding:18px 20px"><div class="label text-muted">Phone</div><div class="heading" style="font-size:22px;margin-top:4px">+91 82486-60104</div></div>
         <div style="padding:18px 20px"><div class="label text-muted">Name</div><div class="heading" style="font-size:22px;margin-top:4px">Gopinath R</div></div>
         <div style="padding:18px 20px"><div class="label text-muted">Location</div><div class="heading" style="font-size:22px;margin-top:4px">Chennai / Remote</div></div>
       </div>
       <div style="padding:22px 20px;border-top:2px solid var(--color-divider);display:flex;gap:12px;flex-wrap:wrap">
         <a class="btn btn-primary" href="mailto:gopinathr0720@gmail.com">gopinathr0720@gmail.com</a>
-        <a class="btn btn-secondary" href="tel:+918248660104">+91 82486-60104</a>
         <a class="btn btn-secondary" href="https://www.linkedin.com/in/gopinath-ravichandran" target="_blank" rel="noopener">LinkedIn</a>
         <a class="btn btn-secondary" href="https://github.com/gbnathworkspace" target="_blank" rel="noopener">GitHub</a>
         <a class="btn btn-ghost" href="assets/Gopinath_R_Resume.pdf" target="_blank">Download resume</a>
